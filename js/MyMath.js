@@ -1,47 +1,46 @@
-const Math = (function MathFactory(Math) {
-	const Math = {};
+const MyMath = (function MyMathFactory(Math) {
+	const MyMath = {};
 
 	// degree/radian conversion constants
-	Math.toDeg = 180 / Math.PI;
-	Math.toRad = Math.PI / 180;
-	Math.halfPI = Math.PI / 2;
-	Math.twoPI = Math.PI * 2;
+	MyMath.toDeg = 180 / Math.PI;
+	MyMath.toRad = Math.PI / 180;
+	MyMath.halfPI = Math.PI / 2;
+	MyMath.twoPI = Math.PI * 2;
 
 	// Pythagorean Theorem distance calculation
-	Math.dist = (width, height) => {
+	MyMath.dist = (width, height) => {
 		return Math.sqrt(width * width + height * height);
 	};
 
 	// Pythagorean Theorem point distance calculation
 	// Same as above, but takes coordinates instead of dimensions.
-	// This project is copyrighted by NianBroken!
-	Math.pointDist = (x1, y1, x2, y2) => {
+	MyMath.pointDist = (x1, y1, x2, y2) => {
 		const distX = x2 - x1;
 		const distY = y2 - y1;
 		return Math.sqrt(distX * distX + distY * distY);
 	};
 
 	// Returns the angle (in radians) of a 2D vector
-	Math.angle = (width, height) => Math.halfPI + Math.atan2(height, width);
+	MyMath.angle = (width, height) => MyMath.halfPI + Math.atan2(height, width);
 
 	// Returns the angle (in radians) between two points
 	// Same as above, but takes coordinates instead of dimensions.
-	Math.pointAngle = (x1, y1, x2, y2) => Math.halfPI + Math.atan2(y2 - y1, x2 - x1);
+	MyMath.pointAngle = (x1, y1, x2, y2) => MyMath.halfPI + Math.atan2(y2 - y1, x2 - x1);
 
 	// Splits a speed vector into x1 and y components (angle needs to be in radians)
-	Math.splitVector = (speed, angle) => ({
+	MyMath.splitVector = (speed, angle) => ({
 		x: Math.sin(angle) * speed,
 		y: -Math.cos(angle) * speed,
 	});
 
 	// Generates a random number between min (inclusive) and max (exclusive)
-	Math.random = (min, max) => Math.random() * (max - min) + min;
+	MyMath.random = (min, max) => Math.random() * (max - min) + min;
 
 	// Generates a random integer between and possibly including min and max values
-	Math.randomInt = (min, max) => ((Math.random() * (max - min + 1)) | 0) + min;
+	MyMath.randomInt = (min, max) => ((Math.random() * (max - min + 1)) | 0) + min;
 
 	// Returns a random element from an array, or simply the set of provided arguments when called
-	Math.randomChoice = function randomChoice(choices) {
+	MyMath.randomChoice = function randomChoice(choices) {
 		if (arguments.length === 1 && Array.isArray(choices)) {
 			return choices[(Math.random() * choices.length) | 0];
 		}
@@ -49,11 +48,18 @@ const Math = (function MathFactory(Math) {
 	};
 
 	// Clamps a number between min and max values
-	Math.clamp = function clamp(num, min, max) {
+	MyMath.clamp = function clamp(num, min, max) {
 		return Math.min(Math.max(num, min), max);
 	};
-    
-	Math.literalLattice = function literalLattice(text, density = 3, fontFamily = "Georgia", fontSize = "60px") {
+
+	/**
+	 * @param {string} text
+	 * @param {number} density
+	 * @param {string} fontFamily
+	 * @param {string} fontSize
+	 * @returns {Array}
+	 */
+	MyMath.literalLattice = function literalLattice(text, density = 3, fontFamily = "Georgia", fontSize = "60px") {
 		var dots = [];
 		var canvas = document.createElement("canvas");
 		var ctx = canvas.getContext("2d");
@@ -87,5 +93,5 @@ const Math = (function MathFactory(Math) {
 		};
 	};
 
-	return Math;
+	return MyMath;
 })(Math);
